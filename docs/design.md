@@ -1,7 +1,5 @@
 # Design notes
 
-Recruiter / interviewer depth. No assignment source.
-
 ## 1. Bidirectional synchronization
 
 **Client → server.** A watcher thread uses Linux `inotify` on the mount. Create, modify, and delete in that folder become Store or Delete RPCs. `inotify` can drop events under burst, so explicit Store and a full-list callback are backups, not optional extras.

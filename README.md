@@ -4,7 +4,7 @@ C++17 · gRPC · Protocol Buffers · Linux `inotify` · async callbacks
 
 A client-cached distributed file system with **weak (AFS-like) consistency**, **per-file write locks**, and **bidirectional sync**. I implemented this for a graduate operating systems course at Georgia Tech.
 
-**Source is private** (course policy). This repo is the public design write-up for recruiters and interviewers. I can walk through the code live or share the private repo on request.
+**Source is private**. This public part in this repo is the design write-up.
 
 ## What it does
 
@@ -58,16 +58,13 @@ This is a deliberate trade: fewer round trips, short windows of staleness. It is
 
 A Python harness starts the server and several mount clients, then runs create → modify → no-op store → delete. Each replica (server + every client) is checked with CRC-32. If they do not converge before a timeout, the run fails. That is the class of bug a single-client `store` test never catches: stale cache, missed callback, lock not released.
 
-## Limits (honest)
+## Limits
 
 - One server process, userspace gRPC, insecure credentials
 - Whole-file transfer, not block/stripe I/O
 - No replication, no LRU cache cap, no lock lease
-- Async completion-queue plumbing was course infrastructure; lock table, checksum/mtime policy, cache reconcile, and the stress harness are what I owned
 
-## Interview (30 seconds)
-
-> Bidirectional sync: `inotify` pushes local edits up; async long-poll callbacks pull server changes down. Whole-file cache with CRC-32 and mtime. Exclusive write locks plus atomic rename so two clients cannot publish conflicting or half-written files.
+## Longer notes
 
 Longer notes: [docs/design.md](docs/design.md)
 
