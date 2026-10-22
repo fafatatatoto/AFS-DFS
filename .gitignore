@@ -1,0 +1,13 @@
+# This repo is documentation only. Do not add course source.
+*.cpp
+*.h
+*.cc
+*.proto
+*.o
+*.a
+*.so
+bin/
+part1/
+part2/
+docs/part1.md
+docs/part2.md
