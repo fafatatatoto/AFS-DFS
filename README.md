@@ -4,7 +4,7 @@ C++17 · gRPC · Protocol Buffers · Linux `inotify` · async callbacks
 
 A client-cached distributed file system with **weak (AFS-like) consistency**, **per-file write locks**, and **bidirectional sync**. I implemented this for a graduate operating systems course at Georgia Tech.
 
-**Source is private**. This public part in this repo is the design write-up.
+**Source is private**. The public part in this repo is the design write-up.
 
 ## What it does
 
